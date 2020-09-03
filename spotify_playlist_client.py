@@ -5,7 +5,7 @@ import datetime  # used to determine expiration time of token
 
 from urllib.parse import urlencode  # used to parse URLs for queries in Spotify
 
-from spotify_search_client import SptfySearchClient
+from spotify_search_client import SptfySearchClient  # used to search using the Spotify API
 
 
 class SptfyPlaylistClient:
@@ -52,8 +52,13 @@ class SptfyPlaylistClient:
         :param token: the token to be used within the header.
         """
 
+        my_token = token
+
+        if my_token is None:
+            my_token = self.get_access_token()
+
         return {
-            "Authorization": f"Bearer {token}",
+            "Authorization": f"Bearer {my_token}",
             "Content-Type": "application/json"
         }
 
