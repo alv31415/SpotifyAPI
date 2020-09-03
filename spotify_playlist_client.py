@@ -68,6 +68,9 @@ class SptfyPlaylistClient:
         Returns the access token, using "navigator".
         This method is used to get a token that requires user identification (i.e to modify a personal playlist)
         If it doesn't exist, or is expired, it requests authorisation, and returns the new token
+        :param user_id: the username of the Spotify Account in which the playlist is to be created.
+        :param password: the password of the Spotify Account in which the playlist is to be created.
+        :param walkthrough_mode: a boolean value used to determine whether the user sees the token obtaining process
         """
 
         expires = self.expiration_time
@@ -87,6 +90,9 @@ class SptfyPlaylistClient:
         Returns the access token, using spotify_search_client.
         This method is used to get a token when getting data from public (or private) playlists
         If it doesn't exist, or is expired, it requests authorisation, and returns the new token
+        :param user_id: the username of the Spotify Account in which the playlist is to be created.
+        :param password: the password of the Spotify Account in which the playlist is to be created.
+        :param walkthrough_mode: a boolean value used to determine whether the user sees the token obtaining process
         """
 
         s = SptfySearchClient(client_id=self.client_id, client_secret=self.client_secret)
