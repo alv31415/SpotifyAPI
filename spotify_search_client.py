@@ -162,7 +162,8 @@ class SptfySearchClient:
     def get_track(self, track_name):
 
         """
-        Returns the URI of a track
+        Returns the URI of a track.
+        Used when adding tracks to a playlist in spotify_playlist_client.
         :param track_name: the track that we want to look for
         """
 
