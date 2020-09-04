@@ -105,6 +105,8 @@ The following will return 10 tracks whose name contains *Time*, but not includin
 
  
  ### Obtaining a Resource
+ 
+A resource refers to either an album or an artist. To obtain a resource, we require the resource's ID (this can be obtained from the resource's URI). To obtain a resource, we rely on the `get_resource` method.
 
 ## Playlist Client
 
