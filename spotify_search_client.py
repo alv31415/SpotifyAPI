@@ -132,7 +132,7 @@ class SptfySearchClient:
         :param search_parameters: the name of what we are looking for (i.e the song name, artist name, etc ...)
         as keys for the dictionary, use: album, artist, playlist or track
         i.e {"artist" : "Imagine Dragons", "album" : "Night Visions"}
-        :param operator: the operator to use. Either "not" or "or. Used to reduce search results.
+        :param operator: the operator to use. Either "not" or "or". Used to reduce search results.
         :param operator_query: the object to which we apply the operator (i.e an artist name)
         :param content_type: the "type" of the "search parameter".
         Valid types are: album , artist, playlist, track, show and episode.
