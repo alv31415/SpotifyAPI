@@ -85,6 +85,24 @@ The Search Client uses the <a href = "https://developer.spotify.com/documentatio
  
  ### Making a Search
  
+ A Spotify search through the API relies on 2 methods: `simple_search` and `search`. `search` is used to format the search parameters, whilst `simple_search` contains the functionality to make the search request.
+ 
+In `search` we define what we want to search for (*album , artist, playlist, track, show and episode*), what type of results we want and the number of results to return. For example:
+
+```
+search(search_parameters = {"artist" : "Avicii", "album" : "True"}, "content_type" = "track", "limit" = 10)
+```
+
+The following will return 10 tracks from the album *True* by *Avicii*. (Notice that *search_parameters* must be a dictionary)
+
+We can add an *operator* and an *operator query* to reduce the search results that are returned. For example:
+
+```
+search(search_parameters = {"track" : "Time"}, "operator" : "NOT", "operator_type  : "billie eilish", "content_type" = "track", "limit" = 10)
+```
+
+The following will return 10 tracks whose name contains *Time*, but not including those by Billie Eilish.
+
  
  ### Obtaining a Resource
 
