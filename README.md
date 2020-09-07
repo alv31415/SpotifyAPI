@@ -106,7 +106,14 @@ The following will return 10 tracks whose name contains *Time*, but not includin
  
  ### Obtaining a Resource
  
-A resource refers to either an album or an artist. To obtain a resource, we require the resource's ID (this can be obtained from the resource's URI). To obtain a resource, we rely on the `get_resource` method.
+A resource refers to either an album or an artist. To obtain a resource, we require the resource's ID (this can be obtained from the resource's URI). To obtain a resource, we rely on the `get_resource` method. This method takes 4 arguments:
+
+* **id:** the id of the resource (can be found in the resource's URI)
+* **resource_type:** used to determine the type of resource that is returned. Can be either *artist* or *album*. If neither String is provided, *artist* is the default
+* **keyword:** a keyword restricting what is returned. For example, when looking for an *album* resource, we can either get the album itself (*keyword = "none"*) or its tracks (*keyword = "tracks"*) (or any album, if no album id is provided). When looking for an *artist* resource, we can either get the artist itself (*keyword = "none"*), its albums (*keyword = "albums"*), its top tracks (*keyword = "top-tracks"*) (depending on a country), or related artists (*keyword = "related-artists"*) (or any artist, if no artist id is provided). For more information, these are the <a href = "https://developer.spotify.com/documentation/web-api/reference/albums/"> album endpoints </a> and the <a href = "https://developer.spotify.com/documentation/web-api/reference/artists/"> artist endpoints </a>.
+* **country:** a country used when retirieving an artist's top tracks. US is the default value.
+
+These arguments are used when creating the request URL. Using *id*, we use the helper methods `get_albums_url` or `get_artists_url` to retrieve the appropiate URL, which is then used in the request.
 
 ## Playlist Client
 
