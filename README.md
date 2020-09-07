@@ -115,6 +115,31 @@ A resource refers to either an album or an artist. To obtain a resource, we requ
 
 These arguments are used when creating the request URL. Using *id*, we use the helper methods `get_albums_url` or `get_artists_url` to retrieve the appropiate URL, which is then used in the request.
 
+For example,
+
+```
+eminem_id = "7dGJo4pcD2V6oG8kP0tJRR"
+get_resource(id = eminem_id, resource_type = "artist", keyword = "top-tracks", country = "HUN")
+```
+
+Returns the top tracks from *Eminem* in *Hungary*.
+
+```
+eminem_album_id = "4otkd9As6YaxxEkIjXPiZ6"
+get_resource(id = eminem_album_id, resource_type = "album", keyword = "tracks")
+```
+
+Returns tracks from the album *Music To Be Murdered By*
+
+### Printing Information
+
+I provided a variety of methods that can be used to pretty print the (in my opinion) the most relevant information that is obtained from the requests. The printing methods are:
+
+* `print_search_results`
+* `print_artist`
+* `print_album` (uses `from_ms` and `print_tracks` as a helper methods)
+* `print_top_tracks` (uses `from_ms` as a helper method)
+
 ## Playlist Client
 
 The Playlist Client uses the <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/"> Playlist Endpoint </a>, described as:
