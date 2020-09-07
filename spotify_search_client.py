@@ -238,7 +238,8 @@ class SptfySearchClient:
         :param id: the id corresponding to the resource
         i.e Avicci => 1vCWHaC5f2uS3yhpwWbIA6
         :param resource_type: whether we are looking for an album or an artist. Artist is the defualt
-        :param keyword: keyword used to specify the searach
+        :param keyword: keyword used to specify the search
+        :param country: a country used when retirieving an artist's top tracks. US is the default value.
         """
 
         lookup_url = self.get_artists_url(artist_id = id , keyword = keyword, country = country)
