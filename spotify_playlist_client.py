@@ -185,6 +185,36 @@ class SptfyPlaylistClient:
         else:
             raise ValueError("You need to provide a list of song names to add to a playlist")
 
+    def remove_tracks_from_playlist(self, user_id, password, playlist_id, remove_tracks,
+                                    walkthrough_mode=False):
+
+        """
+        Given a list of songs, removes them from a playlist.
+        If no list is provided, a ValueError is raised.
+        :param user_id: the username of the Spotify Account in which the playlist is to be created.
+        :param password: the password of the Spotify Account in which the playlist is to be created.
+        :param walkthrough_mode: a boolean value used to determine whether the user sees the token obtaining process
+        :param playlist_id: the id of the playlist.
+        :param remove_tracks: a list of song names to be removed from the playlist
+        """
+
+        if isinstance(remove_tracks, list):
+            playlist_url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+            token = self.get_token(user_id=user_id, password=password, walkthrough_mode=walkthrough_mode)
+
+            s = SptfySearchClient(client_id=self.client_id, client_secret=self.client_secret)
+
+            uri_tracks = [uri for uri in [s.get_track(track) for track in remove_tracks]]
+            remove_tracks_dict_list = [{"uri": track_uri} for track_uri in uri_tracks]
+            request_body = json.dumps({"tracks": remove_tracks_dict_list})
+
+            header = self.get_header(token=token)
+
+            r = requests.delete(playlist_url, data=request_body, headers=header)
+            print(f"Remove {len(remove_tracks)} items from playlist {playlist_id}: {r.status_code}")
+        else:
+            raise TypeError("You need to provide a list of song names to remove from a playlist")
+
     def get_playlist(self, playlist_id, market=None):
 
         """
@@ -250,33 +280,3 @@ class SptfyPlaylistClient:
                 return playlist["id"]
 
         raise ValueError(f"{playlist_name} was not found in our search results")
-
-    def remove_tracks_from_playlist(self, user_id, password, playlist_id, remove_tracks,
-                                    walkthrough_mode=False):
-
-        """
-        Given a list of songs, removes them from a playlist.
-        If no list is provided, a ValueError is raised.
-        :param user_id: the username of the Spotify Account in which the playlist is to be created.
-        :param password: the password of the Spotify Account in which the playlist is to be created.
-        :param walkthrough_mode: a boolean value used to determine whether the user sees the token obtaining process
-        :param playlist_id: the id of the playlist.
-        :param remove_tracks: a list of song names to be removed from the playlist
-        """
-
-        if isinstance(remove_tracks, list):
-            playlist_url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-            token = self.get_token(user_id=user_id, password=password, walkthrough_mode=walkthrough_mode)
-
-            s = SptfySearchClient(client_id=self.client_id, client_secret=self.client_secret)
-
-            uri_tracks = [uri for uri in [s.get_track(track) for track in remove_tracks]]
-            remove_tracks_dict_list = [{"uri": track_uri} for track_uri in uri_tracks]
-            request_body = json.dumps({"tracks": remove_tracks_dict_list})
-
-            header = self.get_header(token=token)
-
-            r = requests.delete(playlist_url, data=request_body, headers=header)
-            print(f"Remove {len(remove_tracks)} items from playlist {playlist_id}: {r.status_code}")
-        else:
-            raise TypeError("You need to provide a list of song names to remove from a playlist")
