@@ -153,6 +153,16 @@ I provided a variety of methods that can be used to pretty print the (in my opin
 The Playlist Client uses the <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/"> Playlist Endpoint </a>, described as:
  
  *"Endpoints for retrieving information about a user’s playlists and for managing a user’s playlists."*
+ 
+### Request Auth & Obtaining a Token
+  
+The Playlist Client can obtain a token in 2 ways, depending on the functionality that is required.
+
+If we want to work with a general playlist (that is, getting a playlist or its tracks), the authorisation and token request functionality is implemented via the method `get_access_token`. This method uses the Search Client to obtain the token, and contains logic to handle token expiration and saving.
+
+Alternatively, if we want to create and modify a playlist, we use the method `get_token`. This method will take personal information as arguments (Spotify username and password). It uses the `navigator.py` file to create and retrieve a valid token from the <a href = "https://developer.spotify.com/console/post-playlists/"> Create Playlist Console></a>. It also contains the logic used to handle token expiration and saving. Further details on how `navigator.py` works is provided in the section **Navigator**.
+ 
+ 
 
 ## Browse Client
 
