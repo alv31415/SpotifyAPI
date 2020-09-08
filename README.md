@@ -175,6 +175,48 @@ There are 3 methods that can be used to obtain information that is public from p
 For further (potential) functionality, check <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist/"> Get a Playlist </a> and <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/"> Get a Playlist's Items </a>.
 
 ### Creating & Modifying a Playlist
+
+There are 3 methods that can be used to create and modify information from a playlist:
+
+* `create_playlist`: given personal information from a user (`user_id` & `password`) creates a playlist in the user's account. The "specifications" of the playlist can be defined within the method's parameters:
+    * `playlist_name`: the desired name for our playlist.
+    * `public`: a boolean String. *"false"* if you want the playlist to be private.
+    * `collaborative`: a boolean String. *"false"* if you want the playlist to not be collaborative.
+    * `description`: the description for the playlist.
+
+  Uses a helper method (`check_boolean_value`) to ensure that `public` and `collaborative` only receive *"true"* or *"false"* as arguemnts. Otherwise, returns       *"false"* as a default.
+  
+  This method returns the id of the playlist that was created.
+    
+* `add_tracks_to_playlist`: given personal information from a user (`user_id` & `password`), a `playlist_id` and a list of songs/episodes (`tracks`), adds the songs to the playlist with the given id.
+
+* `remove_tracks_from_playlist`: given personal information from a user (`user_id` & `password`), a `playlist_id` and a list of songs/episodes (`remove_tracks`), removes the songs from the playlist with the given id.
+
+It is important to note that these methods all have an argument `walkthrough_mode`, which is required for `navigator.py`. The default (and recommended) value is *False*, as it makes the whole process much faster.
+
+For example,
+
+```
+my_new_playlist_id = create_playlist(user_id = "myusername", password = "mypassword", walkthrough_mode=False, playlist_name="My Favourite Songs",
+                        public="false", collaborative="true", description="A playlist containing my favourite tracks!")     
+```
+
+creates a private, collaborative playlist called *"My Favourite Songs"* with description *"A playlist containing my favourite tracks!"* and id `my_new_playlist_id`
+
+We can then add songs to this playlist:
+
+```
+my_songs = ["till' i collapse", "Leaving Heaven", "White America", "Without Me"]
+add_tracks_to_playlist(user_id = "myusername", password = "mypassword, playlist_id = my_new_playlist_id, tracks = my_songs, walkthrough_mode=False)
+```
+
+or remove them:
+
+```
+no_longer_my_favourites = ["Leaving Heaven", "White America", "Without Me"]
+remove_tracks_from_playlist(user_id = "myusername", password = "mypassword, playlist_id = my_new_playlist_id, remove_tracks = no_longer_my_favourites, walkthrough_mode=False)
+```
+
  
 
 ## Browse Client
