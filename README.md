@@ -139,7 +139,7 @@ get_resource(id = eminem_album_id, resource_type = "album", keyword = "tracks")
 
 Returns tracks from the album *Music To Be Murdered By*
 
-### Printing Information
+### Printing Methods
 
 I provided a variety of methods that can be used to pretty print the (in my opinion) the most relevant information that is obtained from the requests. The printing methods are:
 
@@ -217,9 +217,31 @@ no_longer_my_favourites = ["Leaving Heaven", "White America", "Without Me"]
 remove_tracks_from_playlist(user_id = "myusername", password = "mypassword, playlist_id = my_new_playlist_id, remove_tracks = no_longer_my_favourites, walkthrough_mode=False)
 ```
 
- 
-
 ## Browse Client
+
+The Browse Client uses the <a href = "https://developer.spotify.com/documentation/web-api/reference/browse/"> Browse Endpoint </a>, described as:
+ 
+ *"Endpoints for getting playlists and new album releases featured on Spotify’s Browse tab."*
+ 
+The Browse Tab is:
+
+<p align = "center">
+  <img src = "https://github.com/alv31415/SpotifyAPI/blob/master/SAPI%20User%20Pictures/Screenshot%202020-09-08%20at%2012.35.59.png">
+</p>
+
+### Request Auth & Obtaining a Token
+
+
+### Query URLs
+
+
+### Working with Categories
+
+
+### New Releases
+
+
+### Printing Methods
 
 
 ## Navigator
