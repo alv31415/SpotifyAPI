@@ -73,6 +73,14 @@ The Search Client uses the <a href = "https://developer.spotify.com/documentatio
  
  *"Get Spotify Catalog information about albums, artists, playlists, tracks, shows or episodes that match a keyword string."*
  
+ the <a href = "https://developer.spotify.com/documentation/web-api/reference/albums/"> Album Endpoint </a>, described as:
+ 
+ *"Endpoints for retrieving information about one or more artists from the Spotify catalog."*
+ 
+ and the <a href = "https://developer.spotify.com/documentation/web-api/reference/artists/"> Artist Endpoint </a>, described as:
+ 
+ *"Endpoints for retrieving information about one or more albums from the Spotify catalog."*
+ 
  ### Request Auth & Obtaining a Token
  
  The Search Client contains the main functionality for requesting authorisation using the **Client Credentials Flow**, via the methods `credentials_to_base64`. `get_token_header`, `get_auth`:
@@ -110,8 +118,8 @@ A resource refers to either an album or an artist. To obtain a resource, we requ
 
 * **id:** the id of the resource (can be found in the resource's URI)
 * **resource_type:** used to determine the type of resource that is returned. Can be either *artist* or *album*. If neither String is provided, *artist* is the default
-* **keyword:** a keyword restricting what is returned. For example, when looking for an *album* resource, we can either get the album itself (*keyword = "none"*) or its tracks (*keyword = "tracks"*) (or any album, if no album id is provided). When looking for an *artist* resource, we can either get the artist itself (*keyword = "none"*), its albums (*keyword = "albums"*), its top tracks (*keyword = "top-tracks"*) (depending on a country), or related artists (*keyword = "related-artists"*) (or any artist, if no artist id is provided). For more information, these are the <a href = "https://developer.spotify.com/documentation/web-api/reference/albums/"> album endpoints </a> and the <a href = "https://developer.spotify.com/documentation/web-api/reference/artists/"> artist endpoints </a>.
-* **country:** a country used when retirieving an artist's top tracks. US is the default value.
+* **keyword:** a keyword restricting what is returned. For example, when looking for an *album* resource, we can either get the album itself (*keyword = "none"*) or its tracks (*keyword = "tracks"*) (or any album, if no album id is provided). When looking for an *artist* resource, we can either get the artist itself (*keyword = "none"*), its albums (*keyword = "albums"*), its top tracks (*keyword = "top-tracks"*) (depending on a country), or related artists (*keyword = "related-artists"*) (or any artist, if no artist id is provided). 
+* **country:** a country used when retrieving an artist's top tracks. US is the default value.
 
 These arguments are used when creating the request URL. Using *id*, we use the helper methods `get_albums_url` or `get_artists_url` to retrieve the appropiate URL, which is then used in the request.
 
