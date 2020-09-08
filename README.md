@@ -231,6 +231,7 @@ The Browse Tab is:
 
 ### Request Auth & Obtaining a Token
 
+For the Browse Client, the authorisation and token request functionality is implemented via the method `get_access_token`. This method uses the Search Client to obtain the token, and contains logic to handle token expiration and saving.
 
 ### Query URLs
 
