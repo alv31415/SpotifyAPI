@@ -162,6 +162,19 @@ If we want to work with a general playlist (that is, getting a playlist or its t
 
 Alternatively, if we want to create and modify a playlist, we use the method `get_token`. This method will take personal information as arguments (Spotify username and password). It uses the `navigator.py` file to create and retrieve a valid token from the <a href = "https://developer.spotify.com/console/post-playlists/"> Create Playlist Console></a>. It also contains the logic used to handle token expiration and saving. Further details on how `navigator.py` works is provided in the section **Navigator**.
  
+### Accessing (Public) Playlist Information
+
+There are 3 methods that can be used to obtain information that is public from playlists:
+
+* `get_playlist`: given a `playlist_id`, returns the playlist associated with the id. Accepts parameters for `market`, as often Spotify has several instances of a track in its catalogue, each available in a different set of markets. 
+
+* `get_playlist_tracks`: given a `playlist_id`, returns the tracks from a playlist associated with the id. Accepts parameters for `market`, as often Spotify has several instances of a track in its catalogue, each available in a different set of marketsg. Accepts parameters for `limit`, which indicates the number of tracks to be returned. 1 is the minimum. 100 is a maximum and default.
+
+* `get_playlist_id`: given a `playlist_name`, uses the Search Client to return the search for a playlist by name, and returns the id of the top result.
+
+For further (potential) functionality, check <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist/"> Get a Playlist </a> and <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/"> Get a Playlist's Items </a>.
+
+### Creating & Modifying a Playlist
  
 
 ## Browse Client
