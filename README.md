@@ -1,5 +1,32 @@
 # SpotifyAPI
+
 Python project to work with the Spotify Web API. My first serious, independent Python project, and my first time working with APIs.
+
+## Table of Contents
+
+* [Project Structure](#project-structure)
+* [Spotify Web API](#spotify-web-api)
+  + [Registering an App](#registering-an-app)
+  + [API Functionality](#api-functionality)
+  + [Console](#console)
+  + [Authorisation](#authorisation)
+  + [Basic Project Workflow](#basic-project-workflow)
+* [Search Client](#search-client)
+  + [Requesting Auth and Obtaining a Token](#requesting-auth-and-obtaining-a-token)
+  + [Making a Search](#making-a-search)
+  + [Obtaining a Resource](#obtaining-a-resource)
+  + [Printing Methods](#printing-methods)
+* [Playlist Client](#playlist-client)
+  + [Requesting Auth and Obtaining a Token](#requesting-auth-and-obtaining-a-token-1)
+  + [Accessing Playlist Information](#accessing-playlist-information)
+  + [Creating and Modifying a Playlist](#creating-and-modifying-a-playlist)
+* [Browse Client](#browse-client)
+  + [Requesting Auth and Obtaining a Token](#requesting-auth-and-obtaining-a-token-2)
+  + [Query URLs](#query-urls)
+  + [Working with Categories and New Releases](#working-with-categories-and-new-releases)
+  + [Printing Methods](#printing-methods-1)
+* [Navigator](#navigator)
+
 
 ## Project Structure
 
@@ -81,7 +108,7 @@ The Search Client uses the <a href = "https://developer.spotify.com/documentatio
  
  *"Endpoints for retrieving information about one or more albums from the Spotify catalog."*
  
- ### Request Auth & Obtaining a Token
+ ### Requesting Auth and Obtaining a Token
  
  The Search Client contains the main functionality for requesting authorisation using the **Client Credentials Flow**, via the methods `credentials_to_base64`. `get_token_header`, `get_auth`:
  
@@ -154,7 +181,7 @@ The Playlist Client uses the <a href = "https://developer.spotify.com/documentat
  
  *"Endpoints for retrieving information about a user’s playlists and for managing a user’s playlists."*
  
-### Request Auth & Obtaining a Token
+### Requesting Auth and Obtaining a Token
   
 The Playlist Client can obtain a token in 2 ways, depending on the functionality that is required.
 
@@ -162,7 +189,7 @@ If we want to work with a general playlist (that is, getting a playlist or its t
 
 Alternatively, if we want to create and modify a playlist, we use the method `get_token`. This method will take personal information as arguments (Spotify username and password). It uses the `navigator.py` file to create and retrieve a valid token from the <a href = "https://developer.spotify.com/console/post-playlists/"> Create Playlist Console></a>. It also contains the logic used to handle token expiration and saving. Further details on how `navigator.py` works is provided in the section **Navigator**.
  
-### Accessing (Public) Playlist Information
+### Accessing Playlist Information
 
 There are 3 methods that can be used to obtain information that is public from playlists:
 
@@ -174,7 +201,7 @@ There are 3 methods that can be used to obtain information that is public from p
 
 For further (potential) functionality, check <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist/"> Get a Playlist </a> and <a href = "https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/"> Get a Playlist's Items </a>.
 
-### Creating & Modifying a Playlist
+### Creating and Modifying a Playlist
 
 There are 3 methods that can be used to create and modify information from a playlist:
 
@@ -229,7 +256,7 @@ The Browse Tab is:
   <img src = "https://github.com/alv31415/SpotifyAPI/blob/master/SAPI%20User%20Pictures/Screenshot%202020-09-08%20at%2012.35.59.png">
 </p>
 
-### Request Auth & Obtaining a Token
+### Requesting Auth and Obtaining a Token
 
 For the Browse Client, the authorisation and token request functionality is implemented via the method `get_access_token`. This method uses the Search Client to obtain the token, and contains logic to handle token expiration and saving.
 
@@ -249,7 +276,7 @@ To make request to the browse endpoints, we need to create queries for our reque
     * `limit`: the maximum number of results that ought to be returned
 * `get_request_url`: uses `urllib` to parse the dictionary obtained from `get_request_url_dict` into a URL query. Returns this URL.
 
-### Working with Categories & New Releases
+### Working with Categories and New Releases
 
 We use `get_reqeust_url` to create a URL used in requests fro the following methods for extracting browse data:
 
