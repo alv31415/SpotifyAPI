@@ -249,23 +249,49 @@ To make request to the browse endpoints, we need to create queries for our reque
     * `limit`: the maximum number of results that ought to be returned
 * `get_request_url`: uses `urllib` to parse the dictionary obtained from `get_request_url_dict` into a URL query. Returns this URL.
 
-### Working with Categories
+### Working with Categories & New Releases
 
 We use `get_reqeust_url` to create a URL used in requests fro the following methods for extracting browse data:
 
 * `get_category_ids`: returns the category ids from the browse tabs. These IDs are used in the following methods when working with a specific category.
 * `get_category`: given a `category_id`, returns the category. The category returned depends on a `country` and a `locale`.
 * `get_category_playlists`: given a `category_id`, returns the playlists from the corresponding category. The playlists returned depend on a `country` and a `limit`.
-* `get_playlist_from_category`: given a `category_id` and a `playlst_name`, returns the playlist with the given name from the corresponding category. The playlist returned depend on a `country`.
+* `get_playlist_from_category`: given a `category_id` and a `playlst_name`, returns the playlist with the given name from the corresponding category. The playlist returned depend on a `country`. If the playlist with the given name is not found, a Value Error is raised.
 * `get_new_releases`: given a `country` returns the new releases from said country. Number of results depends on `limit`
 
+For example,
+
+```
+get_category(category_id = "pop", country = "GB", locale = "en_GB")
+```
+
+Returns the category *"Pop"* from the UK (English Language).
+
+```
+get_category(category_id = "toplists", country = "BR", limit = "12")
+```
+
+Returns 12 playlists the category *"Top Lists"* from Brazil.
+
+```
+get_playlist_from_category(playlist_name = "Global Top 50", category_id = "toplists", country = "US")
+```
+
+Returns the playlist *"Global Top 50"* from the category *"Top Lists"* from the US.
 
 
+```
+get_new_releases(country = "SE", limit = 15)
+```
 
-### New Releases
-
+Returns 15 new releases traacks from Sweden.
 
 ### Printing Methods
 
+Printing functionality has been provided to pretty print the results of the Browse Client:
+
+* `print_category_ids`
+* `print_category_playlists`
+* `print_new_releases`
 
 ## Navigator
