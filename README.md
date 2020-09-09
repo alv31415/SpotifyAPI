@@ -235,8 +235,31 @@ For the Browse Client, the authorisation and token request functionality is impl
 
 ### Query URLs
 
+To make request to the browse endpoints, we need to create queries for our request URLs (much like in the Search Client). In order to do this, we use 2 methods:
+
+* `get_request_url_dict`: creates and returns a dictionary, in which the keys are the query, and the values are the query values. Different endpoints require different URLs, and this method manages this. The arguments it takes are:
+    * `category_query`: used to fiter out the arguments that certain queries don't need. For example, to get a category's playlist, we require a `country` and a `limit`but to get a category, we require a `country` and a `locale`, but no `limit`. Valid `category_query` arguments are:
+        * `get_ids`
+        * `get_category`
+        * `get_category_playlist`
+        * `get_releases`
+    * `country`: a country, shown as a ISO 3166-1 alpha-2 country code. No value corresponds to a globally relevant query search.
+    * `locale`: the desired language result, consisting of an ISO 639-1 language code and an ISO 3166-1 alpha-2 country code,
+        joined by an underscore (i.e "es_MX" refers to Spanish music fromm mexico).
+    * `limit`: the maximum number of results that ought to be returned
+* `get_request_url`: uses `urllib` to parse the dictionary obtained from `get_request_url_dict` into a URL query. Returns this URL.
 
 ### Working with Categories
+
+We use `get_reqeust_url` to create a URL used in requests fro the following methods for extracting browse data:
+
+* `get_category_ids`: returns the category ids from the browse tabs. These IDs are used in the following methods when working with a specific category.
+* `get_category`: given a `category_id`, returns the category. The category returned depends on a `country` and a `locale`.
+* `get_category_playlists`: given a `category_id`, returns the playlists from the corresponding category. The playlists returned depend on a `country` and a `limit`.
+* `get_playlist_from_category`: given a `category_id` and a `playlst_name`, returns the playlist with the given name from the corresponding category. The playlist returned depend on a `country`.
+* `get_new_releases`: given a `country` returns the new releases from said country. Number of results depends on `limit`
+
+
 
 
 ### New Releases
