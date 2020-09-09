@@ -238,7 +238,7 @@ class SptfyBrowseClient:
             print(f"Playlist ID: {id}")
             print(f"Playlist URL: {url}\n")
 
-    def get_playlist_from_category(self, playlist_name, category_id="toplists", country=None, limit=20):
+    def get_playlist_from_category(self, playlist_name, category_id="toplists", country=None):
 
         """
         Returns a dictionary containing the information of a playlist from within a specific category
@@ -248,7 +248,7 @@ class SptfyBrowseClient:
         :param limit: The maximum number of categories to return. Default: 20. Minimum: 1. Maximum: 50.
         """
 
-        category_playlists = self.get_category_playlists(category_id=category_id, country=country, limit=limit)
+        category_playlists = self.get_category_playlists(category_id=category_id, country=country, limit=50)
 
         for playlist in category_playlists["playlists"]["items"]:
             if playlist["name"] == playlist_name:
