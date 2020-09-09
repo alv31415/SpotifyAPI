@@ -295,3 +295,12 @@ Printing functionality has been provided to pretty print the results of the Brow
 * `print_new_releases`
 
 ## Navigator
+
+**navigator.py** uses *selenium* to obtain a token from Spotify, by logging in as a user. It contains 3 methods:
+
+* `spotify_login`: logs in to the user's Spotify account, witht the provided user information.
+* `driver_scroll`: used to scroll down a page to access all the necessary elements.
+* `extract_token`: used to request authorisation and obtain the token.
+
+All of the methods contain a boolean argument, `walkthrough_mode`. If set to *True*, you, as a user, will see the whole token obtining process. Using the **time** module, this allows for the user to check that everything is correct. If set to *False*, the whole process is done in the background, and the user only sees the returned token.
+
